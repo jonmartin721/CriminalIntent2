@@ -1,5 +1,7 @@
 package com.bignerdranch.android.criminalintent;
 
+import android.text.format.DateFormat;
+
 import java.util.Date;
 import java.util.UUID;
 
@@ -7,12 +9,16 @@ public class Crime {
 
     private UUID mId;
     private String mTitle;
-    private Date mDate;
+    private String mFormattedDate;
     private boolean mSolved;
 
     Crime() {
+
         mId = UUID.randomUUID();
-        mDate = new Date();
+
+        //date stuff for the challenge
+        mFormattedDate = DateFormat.format("EEE, MMM dd, yyyy", new Date()).toString();
+
     }
 
     public UUID getId() {
@@ -27,19 +33,17 @@ public class Crime {
         mTitle = title;
     }
 
-    public Date getDate() {
-        return mDate;
+    String getDate() {
+
+        return mFormattedDate;
+
     }
 
-    public void setDate(Date date) {
-        mDate = date;
-    }
-
-    public boolean isSolved() {
+    boolean isSolved() {
         return mSolved;
     }
 
-    public void setSolved(boolean solved) {
+    void setSolved(boolean solved) {
         mSolved = solved;
     }
 }
