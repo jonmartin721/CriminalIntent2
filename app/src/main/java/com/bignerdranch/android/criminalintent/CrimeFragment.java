@@ -1,6 +1,7 @@
 package com.bignerdranch.android.criminalintent;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -12,14 +13,11 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 
-import static android.widget.CompoundButton.*;
+import static android.widget.CompoundButton.OnCheckedChangeListener;
 
 public class CrimeFragment extends Fragment {
 
     private Crime mCrime;
-    private EditText mTitleField;
-    private Button mDateButton;
-    private CheckBox mSolvedCheckbox;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -28,12 +26,12 @@ public class CrimeFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_crime, container, false);
 
-        mTitleField = (EditText) v.findViewById(R.id.crime_title);
-        mTitleField.addTextChangedListener(new TextWatcher() {
+        EditText titleField = v.findViewById(R.id.crime_title);
+        titleField.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -50,12 +48,12 @@ public class CrimeFragment extends Fragment {
             }
         });
 
-        mDateButton = (Button) v.findViewById(R.id.crime_date);
-        mDateButton.setText(mCrime.getDate().toString());
-        mDateButton.setEnabled(false);
+        Button dateButton = v.findViewById(R.id.crime_date);
+        dateButton.setText(mCrime.getDate().toString());
+        dateButton.setEnabled(false);
 
-        mSolvedCheckbox = (CheckBox) v.findViewById(R.id.crime_solved);
-        mSolvedCheckbox.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+        CheckBox solvedCheckbox = v.findViewById(R.id.crime_solved);
+        solvedCheckbox.setOnCheckedChangeListener(new OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, 
                     boolean isChecked) {

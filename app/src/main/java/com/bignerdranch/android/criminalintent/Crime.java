@@ -10,7 +10,7 @@ public class Crime {
     private Date mDate;
     private boolean mSolved;
 
-    public Crime() {
+    Crime() {
         mId = UUID.randomUUID();
         mDate = new Date();
     }
